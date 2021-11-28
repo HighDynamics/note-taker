@@ -1,15 +1,18 @@
 const router = require('express').Router();
-const notes = require('../db/db.json');
+const notes = require('../../db/db.json');
 const { v4: uuidv4 } = require('uuid');
 
-const Store = require('../lib/Store');
-router.get('/api/notes', (req, res) => {
+const Store = require('../../lib/Store');
+
+// get all notes
+router.get('/notes', (req, res) => {
   const result = notes;
 
   res.send(result);
 });
 
-router.post('/api/notes', (req, res) => {
+// add note
+router.post('/notes', (req, res) => {
   // if nothing is received, respond with error
   if (!req.body.title || !req.body.text) {
     res.status(400).send('No note data to add');
@@ -24,7 +27,8 @@ router.post('/api/notes', (req, res) => {
   res.send(note);
 });
 
-router.delete('/api/notes/:id', (req, res) => {
+// delete note
+router.delete('/notes/:id', (req, res) => {
   new Store().deleteData(req.params.id);
 
   res.send('Note deleted');
