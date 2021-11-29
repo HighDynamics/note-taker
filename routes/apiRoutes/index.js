@@ -29,9 +29,9 @@ router.post('/notes', (req, res) => {
 
 // delete note
 router.delete('/notes/:id', (req, res) => {
-  new Store().deleteData(req.params.id);
+  const notes = new Store().deleteData(req.params.id);
 
-  res.status(200).send('Note deleted');
+  res.status(200).send(notes);
 });
 
 module.exports = router;
