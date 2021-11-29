@@ -1,12 +1,12 @@
 const router = require('express').Router();
-const notes = require('../../db/db.json');
+//const notes = require('../../db/db.json');
 const { v4: uuidv4 } = require('uuid');
 
 const Store = require('../../lib/Store');
 
 // get all notes
 router.get('/notes', (req, res) => {
-  const result = notes;
+  const result = new Store().readData();
 
   res.send(result);
 });
