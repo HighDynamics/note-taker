@@ -22,16 +22,16 @@ router.post('/notes', (req, res) => {
   req.body.id = uuidv4();
 
   // add note to db.json
-  const note = new Store().appendData(req.body);
+  const notes = new Store().appendData(req.body);
 
-  res.send(note);
+  res.status(201).send(notes);
 });
 
 // delete note
 router.delete('/notes/:id', (req, res) => {
   new Store().deleteData(req.params.id);
 
-  res.send('Note deleted');
+  res.status(200).send('Note deleted');
 });
 
 module.exports = router;
